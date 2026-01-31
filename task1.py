@@ -1,15 +1,11 @@
-money_capital = 20000  # Подушка безопасности
-salary = 5000  # Ежемесячная зарплата
-spend = 6000  # Траты за первый месяц
-increase = 0.05  # Ежемесячный рост цен
+# TODO решите задачу
+import json
+def task() -> float:
+    with open("input.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+    total = 0
+    for item in data:
+        total += item["score"] * item["weight"]
+    return round(total, 3)
 
-# TODO Посчитайте количество  месяцев, которое можно протянуть без долгов
-month = 0
-while money_capital >= 0:
-    if spend > money_capital + salary:
-        break
-    money_capital = money_capital + salary - spend
-    month += 1
-    spend *= 1 + increase
-
-print("Количество месяцев, которое можно протянуть без долгов:", month)
+print(task())

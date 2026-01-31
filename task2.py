@@ -1,13 +1,22 @@
-salary = 5000  # Ежемесячная зарплата
-spend = 6000  # Траты за первый месяц
-months = 10  # Количество месяцев, которое планируется протянуть без долгов
-increase = 0.03  # Ежемесячный рост цен
+# TODO импортировать необходимые молули
+import csv
+import json
+INPUT_FILENAME = "input.csv"
+OUTPUT_FILENAME = "output.json"
 
-# TODO Рассчитайте подушку безопасности, чтобы протянуть 10 месяцев без долгов
-money_capital = 0
-for _ in range(months):
-    x = spend - salary
-    if x > 0:
-        money_capital += x
-    spend *= (1 + increase)
-print(f"Подушка безопасности, чтобы протянуть {months} месяцев без долгов:", f"{money_capital:.0f}")
+
+def task() -> None:
+    ...  # TODO считать содержимое csv файла
+    with open(INPUT_FILENAME) as file:
+        lines = [line for line in csv.DictReader(file)]
+    ...  # TODO Сериализовать в файл с отступами равными 4
+    with open(OUTPUT_FILENAME, "w") as file:
+        json.dump(lines, file, indent=4)
+
+if __name__ == '__main__':
+    # Нужно для проверки
+    task()
+
+    with open(OUTPUT_FILENAME) as output_f:
+        for line in output_f:
+            print(line, end="")
